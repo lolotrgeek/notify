@@ -4,17 +4,23 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+// ReactDOM.render(<App swRegistration={serviceWorker}  />, document.getElementById('root'));
+
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-        navigator.serviceWorker.register('./sw.js').then(function (registration) {
-            // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            ReactDOM.render(<App swRegistration={registration} />, document.getElementById('root'));
-        }, function (err) {
-            // registration failed :(
-            console.log('ServiceWorker registration failed: ', err);
-        });
+  // if (
+  //   process.env.NODE_ENV === 'production' &&
+  //   ('https:' === location.protocol || location.host.match(/(localhost|127.0.0.1)/)) &&
+  //   navigator.serviceWorker
+  // ) {
+    navigator.serviceWorker.register('./sw.js').then(function (registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      ReactDOM.render(<App swRegistration={registration} />, document.getElementById('root'));
+    }, function (err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
     });
+  // }
 }
 
 

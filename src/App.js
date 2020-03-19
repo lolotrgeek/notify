@@ -53,19 +53,16 @@ function App(props) {
     const now = Date.now();
 
     const title = 'Timer';
-    const body = 'Count: ' + count;
-    const tag = 'timer'
     // Available options
     // See https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification
     const options = {
-      tag: tag,
-      body: body,
+      tag: 'timer-1',
+      body: 'Count: ' + count,
       lang: 'en',
-      renotify: true,
+      // renotify: true,
       // requireInteraction: true
     }
-    setOptions(options)
-    setTitle(title)
+    props.swRegistration.showNotification(title, options);
   }
 
   useEffect(() => {
@@ -84,7 +81,7 @@ function App(props) {
       <h2>{count}</h2>
       <button onClick={handleButtonClick.bind()}>Start</button>
       <button onClick={() => { stop(); setCount(0) }}>Stop</button>
-      <Notification
+      {/* <Notification
         ignore={ignore && title !== ''}
         notSupported={handleNotSupported.bind()}
         onPermissionGranted={handlePermissionGranted.bind()}
@@ -97,7 +94,7 @@ function App(props) {
         title={title}
         options={options}
         swRegistration={props.swRegistration}
-      />
+      /> */}
     </div>
   );
 }
