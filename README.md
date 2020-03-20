@@ -1,9 +1,9 @@
 # Notify
 Goal is to create a simple demo of persistent Web API notifications using service workers.
 
-[Live Demo Here] (https://zor2r.csb.app/)
+[Live Demo Here](https://zor2r.csb.app/)
 
-[Code SandBox Here] (https://codesandbox.io/s/notify-react-demo-zor2r)
+[Code SandBox Here](https://codesandbox.io/s/notify-react-demo-zor2r)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
