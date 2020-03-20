@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Notification from 'react-web-notification'
 import useCounter from './useCounter'
 
 
@@ -41,18 +40,11 @@ function App(props) {
   }
 
   function handleButtonClick() {
-
-    if (ignore) {
-      return;
-    }
     setCount(0)
     start()
   }
 
-  function createNotification() {
-    const now = Date.now();
-
-    const title = 'Timer';
+  function showNotification() {
     // Available options
     // See https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification
     const options = {
@@ -60,14 +52,21 @@ function App(props) {
       body: 'Count: ' + count,
       lang: 'en',
       // renotify: true,
-      // requireInteraction: true
+      requireInteraction: true
     }
-    props.swRegistration.showNotification(title, options);
+    window.Notification.requestPermission(function (result) {
+      if (result === 'granted') {
+        navigator.serviceWorker.ready.then(function (registration) {
+          props.swRegistration.showNotification(title, options);
+        })
+      }
+    })
   }
-
+  
   useEffect(() => {
     if (count >= 0) {
-      createNotification()
+      // createNotification()
+      showNotification()
     }
     return () => count
   }, [count])
@@ -81,20 +80,7 @@ function App(props) {
       <h2>{count}</h2>
       <button onClick={handleButtonClick.bind()}>Start</button>
       <button onClick={() => { stop(); setCount(0) }}>Stop</button>
-      {/* <Notification
-        ignore={ignore && title !== ''}
-        notSupported={handleNotSupported.bind()}
-        onPermissionGranted={handlePermissionGranted.bind()}
-        onPermissionDenied={handlePermissionDenied.bind()}
-        onShow={handleNotificationOnShow.bind()}
-        onClick={handleNotificationOnClick.bind()}
-        onClose={handleNotificationOnClose.bind()}
-        onError={handleNotificationOnError.bind()}
-        timeout={1000}
-        title={title}
-        options={options}
-        swRegistration={props.swRegistration}
-      /> */}
+ 
     </div>
   );
 }
