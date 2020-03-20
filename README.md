@@ -1,9 +1,7 @@
 # Notify
-Goal is to create a simple demo of persistent Web API notifications using service workers.
+Goal is to create a simple demo of persistent Web API notifications using a service worker and web worker.
 
-[Live Demo Here](https://zor2r.csb.app/)
-
-[Code SandBox Here](https://codesandbox.io/s/notify-react-demo-zor2r)
+WORK IN PROGRESS
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -27,3 +25,5 @@ You will also see any lint errors in the console.
 [Service Worker Fundamentals](https://developers.google.com/web/fundamentals/primers/service-workers)
 
 [Service Worker for CRA](https://www.freecodecamp.org/news/how-to-customize-service-workers-with-create-react-app-4424dda6210c/)
+
+[WebWorker reference](https://github.com/Pjaerr/PWA-Timer)
